@@ -27,3 +27,35 @@ client.once('ready', () => {
 client.on('guildCreate', handleGuildCreate);
 
 client.login(CONFIG.discord.token);
+
+const { Client, GatewayIntentBits } = require('discord.js');
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 8080;
+
+// Créer une instance du client Discord
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
+    ]
+});
+
+// Quand le bot est prêt
+client.once('ready', () => {
+    console.log(`Le bot ${client.user.tag} est connecté à Discord !`);
+});
+
+// Connecter le bot à Discord
+client.login(process.env.DISCORD_TOKEN);
+
+// Créer une route simple pour tester le serveur HTTP
+app.get('/', (req, res) => {
+    res.send('Le bot Discord.js fonctionne !');
+});
+
+// Démarrer le serveur HTTP sur le port 8080
+app.listen(port, () => {
+    console.log(`Le serveur écoute sur le port ${port}`);
+});
