@@ -31,7 +31,7 @@ client1.login(CONFIG.discord.token);
 const { Client, GatewayIntentBits } = require('discord.js');
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 // Créer une instance du client1 Discord
 const client1 = new Client({
