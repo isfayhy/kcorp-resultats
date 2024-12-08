@@ -15,7 +15,7 @@ export async function handleGuildCreate(guild) {
           deny: [PermissionFlagsBits.SendMessages]
         },
         {
-          id: guild.client.user.id,
+          id: guild.client1.user.id,
           allow: [PermissionFlagsBits.SendMessages, PermissionFlagsBits.EmbedLinks]
         }
       ]

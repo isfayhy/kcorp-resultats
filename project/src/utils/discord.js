@@ -2,13 +2,13 @@ import { EmbedBuilder } from 'discord.js';
 import { getGuildConfig } from '../services/guildConfig.js';
 import logger from './logger.js';
 
-export async function sendMatchUpdate(client, matchData) {
+export async function sendMatchUpdate(client1, matchData) {
   // Envoyer la mise à jour à tous les serveurs configurés
-  for (const [guildId, config] of client.guilds.cache) {
+  for (const [guildId, config] of client1.guilds.cache) {
     const guildConfig = getGuildConfig(guildId);
     if (!guildConfig?.resultsChannelId) continue;
 
-    const channel = client.channels.cache.get(guildConfig.resultsChannelId);
+    const channel = client1.channels.cache.get(guildConfig.resultsChannelId);
     if (!channel) {
       logger.warn('Canal de résultats non trouvé', { guildId, channelId: guildConfig.resultsChannelId });
       continue;

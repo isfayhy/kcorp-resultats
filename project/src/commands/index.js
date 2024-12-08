@@ -18,12 +18,12 @@ const commands = [
     .setDefaultMemberPermissions('0') // Réservé aux administrateurs
 ];
 
-export async function initializeCommands(client) {
+export async function initializeCommands(client1) {
   const rest = new REST({ version: '10' }).setToken(CONFIG.discord.token);
 
   try {
     await rest.put(
-      Routes.applicationCommands(client.user.id),
+      Routes.applicationCommands(client1.user.id),
       { body: commands }
     );
     logger.info('Commandes slash enregistrées avec succès');

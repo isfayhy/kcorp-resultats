@@ -3,7 +3,7 @@ import { sendMatchUpdate } from '../utils/discord.js';
 import { CONFIG } from '../config/index.js';
 import logger from '../utils/logger.js';
 
-export async function checkKCorpMatches(client) {
+export async function checkKCorpMatches(client1) {
   try {
     const response = await fetch(
       `${CONFIG.sportsdev.baseUrl}/matches?team=${CONFIG.sportsdev.teamId}`,
@@ -22,7 +22,7 @@ export async function checkKCorpMatches(client) {
     
     for (const match of matches) {
       if (isNewResult(match)) {
-        await sendMatchUpdate(client, formatMatchResult(match));
+        await sendMatchUpdate(client1, formatMatchResult(match));
         logger.info('New match result sent', { matchId: match.id });
       }
     }
